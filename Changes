@@ -1,0 +1,6 @@
+Revision history for Perl extension POEx::DirNotify.
+
+0.00_01  Tue May 18 14:09:32 2010
+	- original version; created by h2xs 1.23 with options
+		-A -B -X -n POEx::DirNotify
+
