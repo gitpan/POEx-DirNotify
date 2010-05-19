@@ -15,6 +15,9 @@ WriteMakefile(
     VERSION_FROM      => 'lib/POEx/DirNotify.pm', # finds $VERSION
     PREREQ_PM         => {
             'POE'       => 1.284,
+            'Digest::MurmurHash' => 0.11,
+            'POE::Session::PlainCall' => 0.0201,
+            'Storable'                => 2
         }, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/POEx/DirNotify.pm', # retrieve abstract from module

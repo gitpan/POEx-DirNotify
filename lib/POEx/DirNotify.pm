@@ -6,7 +6,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-our $VERSION = '0.00_01';
+our $VERSION = '0.01_00';
 $VERSION = eval $VERSION;  # see L<perlmodstyle>
 
 use POE;
@@ -374,6 +374,11 @@ no arguments.
 
 
 =head1 SEE ALSO
+
+L<POE>.
+
+This module's API was heavily inspired by
+L<POE::Component::Win32::ChangeNotify>.
 
 =head1 AUTHOR
 
