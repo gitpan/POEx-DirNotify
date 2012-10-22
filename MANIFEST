@@ -10,4 +10,3 @@ t/10_simple.t
 t/11_delete.t
 t/20_multiple.t
 t/21_multi2.t
-META.yml                                 Module meta-data (added by MakeMaker)

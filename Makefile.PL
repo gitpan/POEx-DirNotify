@@ -13,6 +13,7 @@ unless( $^O eq 'linux' ) {
 WriteMakefile(
     NAME              => 'POEx::DirNotify',
     VERSION_FROM      => 'lib/POEx/DirNotify.pm', # finds $VERSION
+    LICENSE           => 'perl',
     PREREQ_PM         => {
             'POE'       => 1.284,
             'Digest::MurmurHash' => 0.11,

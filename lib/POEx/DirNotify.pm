@@ -6,7 +6,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-our $VERSION = '0.01_00';
+our $VERSION = '0.02_00';
 $VERSION = eval $VERSION;  # see L<perlmodstyle>
 
 use POE;
@@ -208,15 +208,13 @@ sub unmonitor
 
     my @calls;
     foreach my $call ( @{ $notify->{call} } ) {
-        if( $call->[0] eq $session ) {
-            poe->kernel->refcount_decrement( $session, 
-                                             "NOTIFY $notify->{path}" );
+        if( $call->[0] eq $session or $self->{force} ) {
+            poe->kernel->refcount_decrement( $session, "NOTIFY $notify->{path}" );
         }
         else {
             push @calls, $call;
         }
     }
-
 
     if( @calls ) {
         $notify->{call} = \@calls;
@@ -237,8 +235,10 @@ sub unmonitor
 sub shutdown
 {
     my( $self ) = @_;
+    DEBUG and warn "Shutdown $self->{alias}\n";
     foreach my $path ( keys %{ $self->{path} } ) {
-        poe->kernel->call( poe->session => 'unmonitor', { path=>$path } );
+        local $self->{force} = 1;
+        $self->unmonitor( { path=>$path } );
     }
 }
 
@@ -375,7 +375,7 @@ no arguments.
 
 =head1 SEE ALSO
 
-L<POE>.
+L<POE>, L<POEx::Inotify>.
 
 This module's API was heavily inspired by
 L<POE::Component::Win32::ChangeNotify>.
